@@ -2,14 +2,19 @@ mod get_repository_response;
 mod get_repository_commits;
 mod get_repository_languages;
 
-use std::env;
-use reqwest::get;
-use serde::{Serialize, Deserialize};
+use std::fmt::Debug;
+
+//use std::env;
+//use reqwest::get;
+//use serde::{Serialize, Deserialize};
+use colored::Colorize;
 
 
+  /*
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+
   let mut args: Vec<String> = env::args().collect();
   args.push("https://api.github.com/repos/antoniorl01/repofetch".to_owned());
 
@@ -29,9 +34,106 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
   let commit_num = commits.len();
 
   Ok(())
+
+
 }
+   */
 
 // https://api.github.com/repos/antoniorl01/repofetch
 // https://api.github.com/repos/antoniorl01/repofetch/languages
 // https://api.github.com/repos/antoniorl01/repofetch/commits
 
+enum Language {
+  CSharp, 
+  CPlusPlus,
+  C,
+  Java,
+  Javascript,
+  Typescript,
+  Go,
+  Rust,
+  Scala,
+  Haskell,
+  Cobol,
+  Ruby,
+}
+
+
+fn print_language_logo(language: Language) {
+  match language {
+          Language::C => println!("C"),
+          Language::CSharp => todo!(),
+          Language::CPlusPlus =>  
+          {
+           let logo = 
+"
+            +++++++++++++++++
+          +++++++++++++++++++++++
+      ++++++++++++++++++++++++++++
+    +++++++++++++++++++++++++++++++++
+  ++++++++++++*************++++++++++++
+++++++++++++*******************++++++::::
+++++++++++***********************++::::::
++++++++++*********++++++++******:::::::::
+++++++++********++++++++++++**:::::::::::
+++++++++*******++++++++++::::::**:::**:::
+++++++++******+++++++:::::::::****:****::
+++++++++*******++++::::::::::::**:::**:::
+++++++++********::::::::::**:::::::::::::
++++++++++*********::::::******:::::::::::
+++++++++::*********************::::::::::
+++++++::::::*****************::::::::::::
+  +:::::::::::*************::::::::::::
+    :::::::::::::::::::::::::::::::::: 
+      :::::::::::::::::::::::::::::
+         :::::::::::::::::::::::
+            :::::::::::::::::
+";
+
+let mut colored_string = String::new();
+
+for c in logo.chars() {
+match c {
+    '+' => colored_string.push_str(&c.to_string().truecolor(100, 149, 237).to_string()),
+    '*' => colored_string.push_str(&c.to_string().white().to_string()),
+    ':' => colored_string.push_str(&c.to_string().truecolor(0, 0, 139).to_string()),
+    _ => colored_string.push(c),
+}
+}
+
+
+println!("{}", colored_string);} ,
+          Language::Java => todo!(),
+          Language::Javascript => todo!(),
+          Language::Typescript => todo!(),
+          Language::Go => todo!(),
+          Language::Rust => todo!(),
+          Language::Scala => todo!(),
+          Language::Haskell => todo!(),
+          Language::Cobol => todo!(),
+          Language::Ruby => todo!(),
+  }
+  
+}
+
+fn print_repository_data() {
+  println!("Project:\n");
+  println!("Head:\n");
+  println!("Version:\n");
+  println!("Created:\n");
+  println!("Languages:\n");
+  println!("Dependencies:\n");
+  println!("Authors:\n");
+  println!("Last Changes:\n");
+  println!("Contributors:\n");
+  println!("Repo:\n");
+  println!("Commits:\n");
+  println!("Lines of Code:\n");
+  println!("Size:\n");
+  println!("License:\n");
+}
+
+fn main() {
+  print_language_logo(Language::CPlusPlus);
+  print_repository_data();
+}
