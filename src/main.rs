@@ -64,7 +64,7 @@ enum Language {
 
 fn print_language_logo(language: Language) {
   match language {
-          Language::C =>           {
+          Language::C => {
             let logo = 
  "
              +++++++++++++++++
@@ -102,7 +102,45 @@ fn print_language_logo(language: Language) {
  }
  println!("{}", colored_string);} ,
 
-          Language::CSharp => todo!(),
+          Language::CSharp => {
+            let logo = 
+ "
+             +++++++++++++++++
+           +++++++++++++++++++++++
+       ++++++++++++++++++++++++++++
+     +++++++++++++++++++++++++++++++++
+   ++++++++++++*************++++++++++++
+ ++++++++++++*******************++++++€€€€
+ ++++++++++***********************++€€€€€€
+ +++++++++*********++++++++******€€€€€€€€€
+ ++++++++********++++++++++++**€€*€€*€€€€€
+ ++++++++*******++++++++++€€€€€€******€€€€
+ ++++++++******+++++++:::€€€€€€€€*€€*€€€€€
+ ++++++++*******++++::::::::€€€€******€€€€
+ ++++++++********::::::::::**€€€€*€€*€€€€€
+ +++++++++*********::::::******€€€€€€€€€€€
+ ++++++++::*********************€€€€€€€€€€
+ ++++++::::::*****************:::€€€€€€€€€
+   +:::::::::::*************:::::::€€€€€
+     ::::::::::::::::::::::::::::::::€€ 
+       :::::::::::::::::::::::::::::
+          :::::::::::::::::::::::
+             :::::::::::::::::
+ ";
+ 
+ let mut colored_string = String::new();
+ 
+ for c in logo.chars() {
+   match c {
+       '+' => colored_string.push_str(&c.to_string().truecolor(178, 102, 255).to_string()),
+       '*' => colored_string.push_str(&c.to_string().white().to_string()),
+       ':' => colored_string.push_str(&c.to_string().truecolor(76, 0, 153).to_string()),
+       '€' => colored_string.push_str(&c.to_string().truecolor(102, 0, 205).to_string()),
+       _ => colored_string.push(c),
+   }
+ }
+ println!("{}", colored_string);} ,
+
           Language::CPlusPlus =>  
           {
            let logo = 
@@ -174,6 +212,6 @@ fn print_repository_data() {
 }
 
 fn main() {
-  print_language_logo(Language::C);
+  print_language_logo(Language::CSharp);
   print_repository_data();
 }
