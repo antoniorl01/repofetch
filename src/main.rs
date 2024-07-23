@@ -43,6 +43,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 // https://api.github.com/repos/antoniorl01/repofetch/languages
 // https://api.github.com/repos/antoniorl01/repofetch/commits
 
+
+// https://github.com/forhappy/Cplusplus-Concurrency-In-Practice
+
 enum Language {
   CSharp, 
   CPlusPlus,
@@ -61,7 +64,44 @@ enum Language {
 
 fn print_language_logo(language: Language) {
   match language {
-          Language::C => println!("C"),
+          Language::C =>           {
+            let logo = 
+ "
+             +++++++++++++++++
+           +++++++++++++++++++++++
+       ++++++++++++++++++++++++++++
+     +++++++++++++++++++++++++++++++++
+   ++++++++++++*************++++++++++++
+ ++++++++++++*******************++++++::::
+ ++++++++++***********************++::::::
+ +++++++++*********++++++++******:::::::::
+ ++++++++********++++++++++++**:::::::::::
+ ++++++++*******++++++++++::::::::::::::::
+ ++++++++******+++++++::::::::::::::::::::
+ ++++++++*******++++::::::::::::::::::::::
+ ++++++++********::::::::::**:::::::::::::
+ +++++++++*********::::::******:::::::::::
+ ++++++++::*********************::::::::::
+ ++++++::::::*****************::::::::::::
+   +:::::::::::*************::::::::::::
+     :::::::::::::::::::::::::::::::::: 
+       :::::::::::::::::::::::::::::
+          :::::::::::::::::::::::
+             :::::::::::::::::
+ ";
+ 
+ let mut colored_string = String::new();
+ 
+ for c in logo.chars() {
+   match c {
+       '+' => colored_string.push_str(&c.to_string().truecolor(100, 149, 237).to_string()),
+       '*' => colored_string.push_str(&c.to_string().white().to_string()),
+       ':' => colored_string.push_str(&c.to_string().truecolor(0, 0, 139).to_string()),
+       _ => colored_string.push(c),
+   }
+ }
+ println!("{}", colored_string);} ,
+
           Language::CSharp => todo!(),
           Language::CPlusPlus =>  
           {
@@ -93,12 +133,12 @@ fn print_language_logo(language: Language) {
 let mut colored_string = String::new();
 
 for c in logo.chars() {
-match c {
-    '+' => colored_string.push_str(&c.to_string().truecolor(100, 149, 237).to_string()),
-    '*' => colored_string.push_str(&c.to_string().white().to_string()),
-    ':' => colored_string.push_str(&c.to_string().truecolor(0, 0, 139).to_string()),
-    _ => colored_string.push(c),
-}
+  match c {
+      '+' => colored_string.push_str(&c.to_string().truecolor(100, 149, 237).to_string()),
+      '*' => colored_string.push_str(&c.to_string().white().to_string()),
+      ':' => colored_string.push_str(&c.to_string().truecolor(0, 0, 139).to_string()),
+      _ => colored_string.push(c),
+  }
 }
 
 
@@ -134,6 +174,6 @@ fn print_repository_data() {
 }
 
 fn main() {
-  print_language_logo(Language::CPlusPlus);
+  print_language_logo(Language::C);
   print_repository_data();
 }
